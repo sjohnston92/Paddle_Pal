@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  start_lat: 1.5
+  start_long: 1.5
+  end_lat: 1.5
+  end_long: 1.5
+  boat_type: MyString
+  river: MyString
+  distance: 1.5
+  date: 2020-10-17
+  body: MyString
+  image: MyString
+  trip_time: MyString
+  user: one
+
+two:
+  name: MyString
+  start_lat: 1.5
+  start_long: 1.5
+  end_lat: 1.5
+  end_long: 1.5
+  boat_type: MyString
+  river: MyString
+  distance: 1.5
+  date: 2020-10-17
+  body: MyString
+  image: MyString
+  trip_time: MyString
+  user: two
