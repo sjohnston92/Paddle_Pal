@@ -1,23 +1,24 @@
 import React,{useState,useContext} from 'react';
-import {Form,Button} from "react-bootstrap"
+import {Form,Col,Button} from "react-bootstrap"
 import axios from "axios";
 import {AuthContext} from "../providers/AuthProvider";
 import Map from "./Map";
 
-const PostForm= () => {
+const PostForm= ({add, hide}) => {
   const auth = useContext(AuthContext);
   const [postState, setPostState] = useState({
-   
-   //TODO Change these
     name: "",
     body: "",
-    avaliable_spots:"",
-    departure_location:"",
-    resort:"",
-    ride_type:"",
-    rider_level:"",
-    departure_time:"",
-    car_type:"",
+    start_lat:"",
+    start_long:"",
+    end_lat:"",
+    end_long:"",
+    boat_type:"",
+    river:"",
+    distance:"",
+    date:"",
+    image:"",
+    trip_time:"",
     user_id: auth.user.id,
   });
 
@@ -26,17 +27,16 @@ const PostForm= () => {
     setPostState({ ...postState, [e.target.name]: e.target.value });
   };
 
-//FIX THESE UP 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post(`/api/posts`, postState)
-    .then((res) => (res.data));
+    .then((res) => add(res.data));
+    hide()
   }
 
   return(
-      //TODO how do i add a map to a form may need to switch to google api
+    //TODO ADD REQUIRED IN FOR CERTAIN FIELD THEY WERE TAKING OUT FOR TESTING
     <>
-    <h1>Create a River Trip</h1>
     <Map />
   <Form onSubmit={handleSubmit}>
     <Form.Group>
@@ -44,70 +44,83 @@ const PostForm= () => {
       <Form.Control 
       name="name"
       required
+      value={postState.name}
       onChange={handleChange} />
     </Form.Group>
-   
+      <Form.Group>
+      <Form.File label="Trip Pic" />
+      </Form.Group>
     <Form.Group>
       <Form.Label>Descriptions</Form.Label>
       <Form.Control 
       name="body" 
-      type="text area"
-      required
+      as="textarea" rows="3"
+      //required
+      value={postState.body}
       onChange={handleChange} />
     </Form.Group>
+    <Form.Row>
     <Form.Group>
       <Form.Label>Date:</Form.Label>
       <Form.Control 
       name="date"
-      type="string" 
-     //TODO NEED VALUES HERE
-      required
+      type="date" 
+      value={postState.date}
+      //required
       onChange={handleChange}
        />
     </Form.Group>
-    <Form.Group>
+    <Form.Group as={Col}>
       <Form.Label>Distance</Form.Label>
       <Form.Control 
       name="distance"
       type="string" 
-     //TODO NEED VALUES HERE
-      required
+      value={postState.distance}
+      //required
       onChange={handleChange}
        />
     </Form.Group>
-    <Form.Group>
+    <Form.Group as={Col}>
       <Form.Label>Boat Type</Form.Label>
       <Form.Control
        name="boat_type" 
        type="string"
-       required
+       value={postState.boat_type}
+       //required
        onChange={handleChange}
         />
     </Form.Group>
-    <Form.Group>
+    </Form.Row>
+    <Form.Row>
+    <Form.Group as={Col}>
       <Form.Label>River Level</Form.Label>
       <Form.Control 
       name="river" 
-      required
+      //required
+      value={postState.river}
       onChange={handleChange} 
       />
     </Form.Group>
-    <Form.Group>
+    <Form.Group as={Col}>
       <Form.Label>Distance</Form.Label>
       <Form.Control 
        name="distance"
-        required
+        //required
+        value={postState.distance}
         onChange={handleChange} 
       />
     </Form.Group>
-    <Form.Group>
+    <Form.Group as={Col}>
       <Form.Label>Time Length</Form.Label>
       <Form.Control
         name="time_length" 
-        required
+        //required
+        value={postState.time_length}
         onChange={handleChange}>
       </Form.Control>
     </Form.Group>
+    </Form.Row>
+    <Button   variant="outline-success" block onClick={handleSubmit}>Submit</Button>
   </Form>
   
   </>
