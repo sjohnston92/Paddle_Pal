@@ -61,7 +61,7 @@ return posts.map((post) =>(
 </Card.Body>
 
 <ListGroup className="list-group-flush">
-  <ListGroupItem>Date:August 20th</ListGroupItem>
+  <ListGroupItem>Date:August 10th</ListGroupItem>
   <ListGroupItem>Boat Type:Kayak</ListGroupItem>
   <ListGroupItem>River Level:Class 4</ListGroupItem>
   <ListGroupItem>Distance: 10 miles</ListGroupItem>
