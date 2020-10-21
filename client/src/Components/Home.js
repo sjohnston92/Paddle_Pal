@@ -4,6 +4,8 @@ import axios from "axios"
 import PostForm from "./PostForm"
 import User from "./User"
 import {AuthContext} from "../providers/AuthProvider";
+import Comments from "./Comments"
+import UserChart from "./UserChart"
 
 
 
@@ -61,8 +63,8 @@ return posts.map((post) =>(
 </Card.Body>
 
 <ListGroup className="list-group-flush">
-  <ListGroupItem>Date:August 10th</ListGroupItem>
-  <ListGroupItem>Boat Type:Kayak</ListGroupItem>
+  <ListGroupItem>Date:{post.date}</ListGroupItem>
+  <ListGroupItem>Boat Type:{post.boat_type}</ListGroupItem>
   <ListGroupItem>River Level:Class 4</ListGroupItem>
   <ListGroupItem>Distance: 10 miles</ListGroupItem>
   <ListGroupItem>Total Time: 5 Hours</ListGroupItem>
@@ -80,6 +82,9 @@ return posts.map((post) =>(
   </Col>
   </Row>
   <br />
+  <Row>
+    <Comments />
+  </Row>
   <Row className="justify-content-end">
   <Card.Link href="#"> linkUsers Profile </Card.Link>
   </Row>
@@ -109,8 +114,8 @@ return posts.map((post) =>(
     </Row>
     <br />
     <br />
-      <Row className="justify-content-md-space-between">
-        <Col>
+      <Row className="justify-content-md-space-between" >
+        <Col xs ={3}>
           <User />
         <Button variant="success" onClick={handleShow}>
         Create a Trip 
@@ -129,10 +134,7 @@ return posts.map((post) =>(
           </Button>
         </Modal.Footer>
       </Modal>
-        <br />
-        <br />
-        <h2>User Graph</h2>
-        <p>This will be back end logic to support the graph of users distance or vessal of choice over the year</p>
+        <UserChart />
         </Col>
       <Col xs ={6}>
       <div>{renderPost()}</div>
