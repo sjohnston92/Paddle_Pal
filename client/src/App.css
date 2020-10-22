@@ -1,4 +1,12 @@
 
+.comment{
+  background-color: #61dafb !important;
+  color: white!important;
+  width: 100% !important;
+}
+
+
+
 .landing{
   margin-top: 10%;
   text-align: center;

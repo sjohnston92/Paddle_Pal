@@ -1,11 +1,12 @@
 import React,{useState,useEffect,useContext} from 'react';
-import {Container,Modal, Row, Col, Button,Card,ListGroup,ListGroupItem} from 'react-bootstrap'
+import {Container,Modal, Row, Col, Button,Card,ListGroup,ListGroupItem,Dropdown, DropdownButton} from 'react-bootstrap'
 import axios from "axios"
 import PostForm from "./PostForm"
 import User from "./User"
 import {AuthContext} from "../providers/AuthProvider";
 import Comments from "./Comments"
 import UserChart from "./UserChart"
+import Post from "./Post"
 
 
 
@@ -14,7 +15,7 @@ const Home = () => {
 
   const [posts, setPosts] = useState([]);
   const [show, setShow] = useState(false);
-  const { user, setUser } = useContext(AuthContext);
+  const {user} = useContext(AuthContext);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -52,58 +53,12 @@ useEffect(() => {
   getPost();
 }, []);
 
+
 const renderPost = () =>{
 return posts.map((post) =>(
-<Card key={post.id}>
-<Card.Title>{post.name}</Card.Title>
-<Card.Img variant="top" src="holder.js/100px180?text=MAP DISPLAY" />
-<hr />
-<Card.Body>
-<Card.Img  src="holder.js/10px10?text=MAP DISPLAY" />
-</Card.Body>
-
-<ListGroup className="list-group-flush">
-  <ListGroupItem>Date:{post.date}</ListGroupItem>
-  <ListGroupItem>Boat Type:{post.boat_type}</ListGroupItem>
-  <ListGroupItem>River Level:Class 4</ListGroupItem>
-  <ListGroupItem>Distance: 10 miles</ListGroupItem>
-  <ListGroupItem>Total Time: 5 Hours</ListGroupItem>
-</ListGroup>
-<Card.Body>
-<Card.Text>
-    This is where the trip information will go BODY
-  </Card.Text>
-  <Row className="justify-content-md-space-between">
-    <Col>
-  <Button variant="outline-warning">Edit</Button>
-  </Col>
-  <Col>
-  <Button variant="outline-danger" onClick={() => deletePost(post.id) }>Delete</Button>
-  </Col>
-  </Row>
-  <br />
-  <Row>
-    <Comments />
-  </Row>
-  <Row className="justify-content-end">
-  <Card.Link href="#"> linkUsers Profile </Card.Link>
-  </Row>
-</Card.Body>
-</Card>
+<Post key ={post.id}post={post} deletePost={deletePost}/>
 ))
 }
-
-//This is where comment Stuff will go
-
-
-
-
-
-
-
-
-
-
 
   return (
     <Container>
@@ -116,7 +71,7 @@ return posts.map((post) =>(
     <br />
       <Row className="justify-content-md-space-between" >
         <Col xs ={3}>
-          <User />
+          <User user={user}/>
         <Button variant="success" onClick={handleShow}>
         Create a Trip 
       </Button>
@@ -129,7 +84,7 @@ return posts.map((post) =>(
           <PostForm add={addPost} hide={handleClose}/>
           </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
         </Modal.Footer>
