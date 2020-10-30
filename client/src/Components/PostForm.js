@@ -83,12 +83,20 @@ const PostForm= ({add, hide}) => {
     <Form.Group as={Col}>
       <Form.Label>Boat Type</Form.Label>
       <Form.Control
+      as="select"
        name="boat_type" 
-       type="string"
        value={postState.boat_type}
        //required
        onChange={handleChange}
-        />
+        >
+        <option>*Select an Option</option>
+        <option>Kayak</option>
+        <option>Raft</option>
+        <option>SUP</option>
+        <option>Canoe</option>
+        <option>Other</option>
+      </Form.Control>
+      
     </Form.Group>
     </Form.Row>
     <Form.Row>
@@ -97,9 +105,18 @@ const PostForm= ({add, hide}) => {
       <Form.Control 
       name="river" 
       //required
+      as="select"
       value={postState.river}
       onChange={handleChange} 
-      />
+      >
+      <option>*Select an Option</option>
+      <option>Flat Water</option>
+      <option>Class I</option>
+      <option>Class II</option>
+      <option>Class III</option>
+      <option>Class IV</option>
+      <option>Class V</option>
+      </Form.Control>
     </Form.Group>
     <Form.Group as={Col}>
       <Form.Label>Distance</Form.Label>

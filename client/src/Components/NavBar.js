@@ -13,6 +13,12 @@ const getRightNav = () => {
   if (user) {
     return (
       <>
+     <NavDropdown.Item href="/home">
+          DashBoard
+      </NavDropdown.Item>
+     <NavDropdown.Item href="/map">
+            Map
+      </NavDropdown.Item>
       <NavDropdown.Item
         onClick={() => console.log("hello")}> Edit Profile
       </NavDropdown.Item>
@@ -40,17 +46,13 @@ const getRightNav = () => {
 
 
 return (
-<Nav className="justify-content-end" activeKey="/home">
-<Nav.Item>
-  {user && <Nav.Link href="/home">DashBoard</Nav.Link>}
-</Nav.Item>
-<Nav.Item>
-  {user && <Nav.Link href="/map">Map</Nav.Link>}
-</Nav.Item>
+  <>
+{user && <Nav className="justify-content-end" activeKey="/home">
 <NavDropdown title="User" id="basic-nav-dropdown">
 {getRightNav()}
 </NavDropdown>
-</Nav>
+</Nav> }
+</>
 
 )
 }

@@ -32,9 +32,7 @@ const Login = (props) => {
         </Form.Group>
         <Button variant="info"type="submit">Login</Button>
       </Form>
-      <br />
-      <Button variant="success" href="/">Back</Button>
-    </div>
+      </div>
   );
 };
 
